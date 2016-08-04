@@ -69,7 +69,7 @@ $$
 \mathcal{F}=\{f|Y=f(x)\}
 \end{eqnarray}
 $$
-在机器学习中$\mathcal{F}$通常是由一个参数向量$\theta$决定的向量簇
+在机器学习中$\mathcal{F}$通常是由一个参数向量$\theta$决定的向量簇R_
 $$
 \begin{eqnarray}
 \mathcal{F}=\{f|Y=f_{\theta}(X),\theta \in R^n\}
@@ -173,3 +173,80 @@ $$
 \min_{f \in \mathcal{F}}\frac{1}{N}\sum_{i=1}^NL(y_i,f(x_i))+\lambda J(f)
 \end{equation}
 $$
+## 算法
+统计学习问题归结为最优化问题，统计学习的算法成为求最优化问题的算法
+
+# 模型评估与模型选择
+假设学习到的模型是$Y=\hat{f}(x)$,训练误差是模型$Y=\hat{f}(x)$关于训练数据集的平均损失：
+$$
+\begin{equation}
+R_{emp}(\hat{f})=\frac{1}{N}\sum_{i=1}^NL(y_i,\hat{f}(x_i))
+\end{equation}
+$$
+测试误差是模型$Y=\hat{f}(x)$关于测试数据集的平均损失：
+$$
+\begin{equation}
+e_{test}(\hat{f})=\frac{1}{N^\prime}\sum_{i=1}^{N^\prime}L(y_i,\hat{f}(x_i))
+\end{equation}
+$$
+当损失函数是0-1损失时，测试误差就是误差率（error rate）
+$$
+\begin{equation}
+e_{test}(\hat{f})=\frac{1}{N^\prime}\sum_{i=1}^{N^\prime}I(y_i \ne \hat{f}(x_i))
+\end{equation}
+$$
+L2范形正则化项
+$$
+\begin{equation}
+J(f)=\Vert w \Vert ^2
+\end{equation}
+$$
+L1范形正则化项
+$$
+\begin{equation}
+J(f)=\Vert w \Vert _1
+\end{equation}
+$$
+
+### 交叉验证
+- 训练集（training set）：训练模型
+- 验证集（validation set）：选择模型
+- 测试集（test set）：测试模型
+
+# 泛化能力
+## 泛化误差
+模型对未知数据预测的误差即是泛化误差（generalization error）
+$$
+\begin{equation}
+R_{exp}(f)=E_p[L(Y,F(X))]=\int_{\mathcal{X} \times \mathcal{Y}} \,L(y,f(x))P(x,y)dxdy
+\end{equation}
+$$
+## 泛化误差上界
+## 生成模型与判别模型
+1. 生成模型表示了给定输入$X$，产生输出$Y$的生成关系：
+$$
+P(Y|X)=\frac{P(X,Y)}{P(X)}
+$$
+2. 判别模型直接由数据学习决策函数$f(X)$,或条件概率分布$P(Y|X)$，作为预测的模型。
+
+#分类问题
+TP--将正类预测为正类数
+FN--将正类预测为负类数
+FP--将负类预测为正类数
+TN--将负类预测为负类数
+
+精确率$P$定义为
+$$
+P=\frac{TP}{TP+FP}
+$$
+召回率$R$定义为
+$$
+R=\frac{TP}{TP+FN}
+$$
+1F值定义为
+$$
+\frac{2}{F_1}=\frac{1}{P}+\frac{1}{R}
+$$
+
+# 标注问题
+# 回归问题
